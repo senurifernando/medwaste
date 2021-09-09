@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="796.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/16">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="536.0" prefWidth="796.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
   <tabs>
     <Tab text="INFECTIOUS WASTE">
       <content>
@@ -35,12 +35,12 @@
                   </Label>
                   <Pane layoutX="14.0" layoutY="56.0" prefHeight="310.0" prefWidth="278.0" style="-fx-background-color: #0000;">
                      <children>
-                        <TextField layoutX="35.0" layoutY="29.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter ID" />
-                        <TextField layoutX="35.0" layoutY="73.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter type of waste" />
-                        <TextField layoutX="35.0" layoutY="117.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter waste object" />
-                        <TextField layoutX="37.0" layoutY="155.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter type of container" />
-                        <TextField layoutX="38.0" layoutY="199.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter Total Waste Per Day" />
-                        <Button layoutX="71.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #38811e;" text="INSERT DATA" textFill="#dbe4d8" />
+                        <TextField fx:id="infecID" layoutX="35.0" layoutY="29.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter ID" />
+                        <TextField fx:id="infecTypeOfWaste" layoutX="35.0" layoutY="73.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter type of waste" />
+                        <TextField fx:id="infecWasteObject" layoutX="35.0" layoutY="117.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter waste object" />
+                        <TextField fx:id="infecTypeOfCont" layoutX="37.0" layoutY="155.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter type of container" />
+                        <TextField fx:id="infecSum" layoutX="38.0" layoutY="199.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter Total Waste Per Day" />
+                        <Button fx:id="insertData" layoutX="71.0" layoutY="250.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #38811e;" text="INSERT DATA" textFill="#dbe4d8" />
                      </children>
                   </Pane>
                   <ImageView fitHeight="44.0" fitWidth="58.0" layoutX="33.0" layoutY="354.0" pickOnBounds="true" preserveRatio="true">
@@ -58,16 +58,61 @@
                         <Image url="@../../../../../../images/icons8-waste-separation-64.png" />
                      </image>
                   </ImageView>
-                  <Button layoutX="14.0" layoutY="468.0" mnemonicParsing="false" text="File" />
-                  <Button layoutX="311.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #38811e;" text="DELETE" textFill="#dbe4d8" />
-                  <Button layoutX="480.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #38811e;" text="LOAD" textFill="#dbe4d8" />
-                  <Button layoutX="646.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #38811e;" text="TOTAL WASTE / DAY" textFill="#dbe4d8" />
+                  <Button fx:id="generateReport" layoutX="14.0" layoutY="468.0" mnemonicParsing="false" text="File" />
+                  <Button fx:id="deleteRecord" layoutX="311.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #38811e;" text="DELETE" textFill="#dbe4d8" />
+                  <Button fx:id="loadRecord" layoutX="480.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #38811e;" text="LOAD" textFill="#dbe4d8" />
+                  <Button fx:id="totalWaste" layoutX="646.0" layoutY="403.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="136.0" style="-fx-background-color: #38811e;" text="TOTAL WASTE / DAY" textFill="#dbe4d8" />
                </children></AnchorPane>
       </content>
     </Tab>
     <Tab text="NON INFECTIOUS WASTE">
       <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <TableView layoutY="1.0" prefHeight="362.0" prefWidth="494.0">
+                    <columns>
+                      <TableColumn prefWidth="62.39999544620514" text="ID" />
+                      <TableColumn prefWidth="104.79998016357422" text="Type of Waste" />
+                        <TableColumn prefWidth="73.60003662109375" text="Object" />
+                        <TableColumn prefWidth="128.79998779296875" text="Type Of Container" />
+                        <TableColumn prefWidth="122.4000244140625" text="Waste / Day" />
+                    </columns>
+                  </TableView>
+                  <Label alignment="CENTER" layoutX="483.0" layoutY="21.0" prefHeight="18.0" prefWidth="297.0" text="Non Infectious Waste Details" textFill="#e11717">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Pane layoutX="497.0" layoutY="61.0" prefHeight="258.0" prefWidth="286.0">
+                     <children>
+                        <TextField layoutX="34.0" layoutY="14.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter ID" />
+                        <TextField layoutX="36.0" layoutY="55.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter type of waste" />
+                        <TextField layoutX="36.0" layoutY="89.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter waste object" />
+                        <TextField layoutX="36.0" layoutY="129.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter type of container" />
+                        <TextField layoutX="36.0" layoutY="172.0" prefHeight="25.0" prefWidth="218.0" promptText="Enter Total Waste Per Day" />
+                        <Button layoutX="72.0" layoutY="219.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" style="-fx-background-color: #38811e;" text="INSERT DATA" textFill="#e9f0e9" />
+                     </children>
+                  </Pane>
+                  <Button layoutX="15.0" layoutY="389.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" style="-fx-background-color: #38811e;" text="DELETE" textFill="#e9f0e9" />
+                  <Button layoutX="179.0" layoutY="389.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" style="-fx-background-color: #38811e;" text="LOAD" textFill="#e9f0e9" />
+                  <Button layoutX="351.0" layoutY="389.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="146.0" style="-fx-background-color: #38811e;" text="TOTAL WASTE / DAY" textFill="#e9f0e9" />
+                  <Button layoutX="705.0" layoutY="432.0" mnemonicParsing="false" text="FILE" />
+                  <ImageView fitHeight="45.0" fitWidth="46.0" layoutX="526.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../images/icons8-nurse-58.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="47.0" fitWidth="48.0" layoutX="625.0" layoutY="340.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../images/icons8-liver-64.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="48.0" fitWidth="52.0" layoutX="714.0" layoutY="341.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../images/icons8-full-trash-48.png" />
+                     </image>
+                  </ImageView>
+               </children></AnchorPane>
       </content>
     </Tab>
       <Tab text="PI CHART (WASTE AMOUNT)">
